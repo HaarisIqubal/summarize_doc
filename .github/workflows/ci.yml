@@ -14,7 +14,11 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 0
-            - name: Push to hub
-              env:
-                HF_TOKEN: ${{ secrets.HF_TOKEN }}
-              run: git push https://HaarisIqubal:$HF_TOKEN@huggingface.co/spaces/HaarisIqubal/summarize_documents ${{ github.head_ref }}
+            - name: Sync with Hugging Face
+              uses: nateraw/huggingface-sync-action@v0.0.4
+              with:
+                  github_repo_id: HaarisIqubal/summarize_doc
+                  huggingface_repo_id: HaarisIqubal/summarize_documents
+                  repo_type: space
+                  space_sdk: streamlit
+                  hf_token: ${{ secrets.HF_TOKEN }}
