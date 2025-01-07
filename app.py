@@ -1,7 +1,8 @@
 import streamlit as st
+from summarize_doc.app.setupview import setup_view
 
 def main():
-    st.title('Summarize Document')
+    setup_view()
 
 
 if __name__ == '__main__':
