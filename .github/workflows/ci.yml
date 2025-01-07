@@ -1,0 +1,20 @@
+name: Sync with Hugging Face Repo
+
+on:
+    push:
+        branches:
+            [main, develop]
+    workflow_dispatch:
+
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            - name: Push to hub
+              env:
+                HF_TOKEN: ${{ secrets.HF_TOKEN }}
+              run: git push https://HaarisIqubal:$HF_TOKEN@huggingface.co/spaces/HaarisIqubal/summarize_documents ${{ github.head_ref }}
